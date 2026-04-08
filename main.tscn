@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://dxrm7odycsg4a"]
+
+[ext_resource type="Script" uid="uid://b88in6q7rqtuu" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://dmcufpy7stfph" path="res://Resources/Block.png" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://cu0h1ikjagbpa" path="res://platform_1.gd" id="2_lquwl"]
+[ext_resource type="Texture2D" uid="uid://7wj8vx7xvrta" path="res://Resources/Player_1.png" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://c2ab4a3xig3wp" path="res://player_1.gd" id="4_7mycd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(96, 28)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1bvp3"]
+radius = 12.0
+height = 46.0
+
+[node name="Main" type="Node2D" unique_id=417804926]
+script = ExtResource("1_ig7tw")
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Block_1" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(90, 40)
+script = ExtResource("2_lquwl")
+
+[node name="Collision" type="CollisionShape2D" parent="Obstacles/Block_1"]
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Sprite" type="Sprite2D" parent="Obstacles/Block_1"]
+scale = Vector2(3.0, 0.875)
+texture = ExtResource("2_0xm2m")
+
+[node name="Block_2" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(310, 180)
+script = ExtResource("2_lquwl")
+
+[node name="Collision" type="CollisionShape2D" parent="Obstacles/Block_2"]
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Sprite" type="Sprite2D" parent="Obstacles/Block_2"]
+scale = Vector2(3.0, 0.875)
+texture = ExtResource("2_0xm2m")
+
+[node name="Block_3" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(540, -30)
+script = ExtResource("2_lquwl")
+
+[node name="Collision" type="CollisionShape2D" parent="Obstacles/Block_3"]
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Sprite" type="Sprite2D" parent="Obstacles/Block_3"]
+scale = Vector2(3.0, 0.875)
+texture = ExtResource("2_0xm2m")
+
+[node name="Block_4" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(220, -140)
+script = ExtResource("2_lquwl")
+
+[node name="Collision" type="CollisionShape2D" parent="Obstacles/Block_4"]
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Sprite" type="Sprite2D" parent="Obstacles/Block_4"]
+scale = Vector2(3.0, 0.875)
+texture = ExtResource("2_0xm2m")
+
+[node name="Block_5" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(470, 110)
+script = ExtResource("2_lquwl")
+
+[node name="Collision" type="CollisionShape2D" parent="Obstacles/Block_5"]
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Sprite" type="Sprite2D" parent="Obstacles/Block_5"]
+scale = Vector2(3.0, 0.875)
+texture = ExtResource("2_0xm2m")
+
+[node name="Player_1" type="CharacterBody2D" parent="." unique_id=1901264873]
+position = Vector2(150, 580)
+script = ExtResource("4_7mycd")
+Move_Speed = 260.0
+Left_Key = 65
+Right_Key = 68
+Up_Key = 87
+Down_Key = 83
+
+[node name="Collision" type="CollisionShape2D" parent="Player_1" unique_id=153922778]
+position = Vector2(-8, -4)
+shape = SubResource("CapsuleShape2D_1bvp3")
+
+[node name="Sprite" type="Sprite2D" parent="Player_1" unique_id=830644189]
+position = Vector2(-7.249999, -4.4999914)
+scale = Vector2(1.390625, 1.46875)
+texture = ExtResource("3_h2yge")
+
+[node name="Player_2" type="CharacterBody2D" parent="."]
+position = Vector2(500, 580)
+script = ExtResource("4_7mycd")
+Move_Speed = 260.0
+Left_Key = 4194319
+Right_Key = 4194321
+Up_Key = 4194320
+Down_Key = 4194322
+
+[node name="Collision" type="CollisionShape2D" parent="Player_2"]
+position = Vector2(-8, -4)
+shape = SubResource("CapsuleShape2D_1bvp3")
+
+[node name="Sprite" type="Sprite2D" parent="Player_2"]
+position = Vector2(-7.249999, -4.4999914)
+scale = Vector2(1.390625, 1.46875)
+modulate = Color(0.45, 0.8, 1, 1)
+texture = ExtResource("3_h2yge")
