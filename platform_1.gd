@@ -1,1 +1,1 @@
-extends StaticBody2D
+extends Node2D

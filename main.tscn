@@ -1,111 +1,179 @@
-[gd_scene format=3 uid="uid://dxrm7odycsg4a"]
+[gd_scene format=3]
 
-[ext_resource type="Script" uid="uid://b88in6q7rqtuu" path="res://main.gd" id="1_ig7tw"]
-[ext_resource type="Texture2D" uid="uid://dmcufpy7stfph" path="res://Resources/Block.png" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://cu0h1ikjagbpa" path="res://platform_1.gd" id="2_lquwl"]
-[ext_resource type="Texture2D" uid="uid://7wj8vx7xvrta" path="res://Resources/Player_1.png" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://c2ab4a3xig3wp" path="res://player_1.gd" id="4_7mycd"]
+[ext_resource type="Script" uid="uid://b88in6q7rqtuu" path="res://main.gd" id="1_main"]
+[ext_resource type="Texture2D" uid="uid://dmcufpy7stfph" path="res://Resources/Block.png" id="2_block"]
+[ext_resource type="Texture2D" path="res://Resources/White_Block.png" id="2_white"]
+[ext_resource type="Texture2D" path="res://Resources/P1_Running.png" id="3_p1"]
+[ext_resource type="Texture2D" path="res://Resources/P2_Running.png" id="4_p2"]
+[ext_resource type="Script" uid="uid://c2ab4a3xig3wp" path="res://player_1.gd" id="5_p1s"]
+[ext_resource type="Script" path="res://player_2.gd" id="6_p2s"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
-size = Vector2(96, 28)
+[sub_resource type="RectangleShape2D" id="shape_large"]
+size = Vector2(160, 20)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1bvp3"]
+[sub_resource type="RectangleShape2D" id="shape_lava"]
+size = Vector2(1152, 20)
+
+[sub_resource type="CapsuleShape2D" id="shape_player"]
 radius = 12.0
-height = 46.0
+height = 30.0
 
-[node name="Main" type="Node2D" unique_id=417804926]
-script = ExtResource("1_ig7tw")
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
 
-[node name="Obstacles" type="Node2D" parent="."]
+[node name="Divider" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(36, 0.125)
+modulate = Color(0.5, 0.5, 0.5, 1)
+texture = ExtResource("2_white")
 
-[node name="Block_1" type="StaticBody2D" parent="Obstacles"]
-position = Vector2(90, 40)
-script = ExtResource("2_lquwl")
+[node name="Top_Lava" type="Area2D" parent="."]
+position = Vector2(576, 314)
 
-[node name="Collision" type="CollisionShape2D" parent="Obstacles/Block_1"]
-shape = SubResource("RectangleShape2D_0xm2m")
+[node name="Collision" type="CollisionShape2D" parent="Top_Lava"]
+shape = SubResource("shape_lava")
 
-[node name="Sprite" type="Sprite2D" parent="Obstacles/Block_1"]
-scale = Vector2(3.0, 0.875)
-texture = ExtResource("2_0xm2m")
+[node name="Sprite" type="Sprite2D" parent="Top_Lava"]
+scale = Vector2(36, 0.625)
+modulate = Color(1, 0.2, 0, 1)
+texture = ExtResource("2_white")
 
-[node name="Block_2" type="StaticBody2D" parent="Obstacles"]
-position = Vector2(310, 180)
-script = ExtResource("2_lquwl")
+[node name="Bottom_Lava" type="Area2D" parent="."]
+position = Vector2(576, 638)
 
-[node name="Collision" type="CollisionShape2D" parent="Obstacles/Block_2"]
-shape = SubResource("RectangleShape2D_0xm2m")
+[node name="Collision" type="CollisionShape2D" parent="Bottom_Lava"]
+shape = SubResource("shape_lava")
 
-[node name="Sprite" type="Sprite2D" parent="Obstacles/Block_2"]
-scale = Vector2(3.0, 0.875)
-texture = ExtResource("2_0xm2m")
+[node name="Sprite" type="Sprite2D" parent="Bottom_Lava"]
+scale = Vector2(36, 0.625)
+modulate = Color(1, 0.2, 0, 1)
+texture = ExtResource("2_white")
 
-[node name="Block_3" type="StaticBody2D" parent="Obstacles"]
-position = Vector2(540, -30)
-script = ExtResource("2_lquwl")
+[node name="Ground_Start_Top" type="StaticBody2D" parent="."]
+position = Vector2(80, 290)
 
-[node name="Collision" type="CollisionShape2D" parent="Obstacles/Block_3"]
-shape = SubResource("RectangleShape2D_0xm2m")
+[node name="Collision" type="CollisionShape2D" parent="Ground_Start_Top"]
+shape = SubResource("shape_large")
 
-[node name="Sprite" type="Sprite2D" parent="Obstacles/Block_3"]
-scale = Vector2(3.0, 0.875)
-texture = ExtResource("2_0xm2m")
+[node name="Sprite" type="Sprite2D" parent="Ground_Start_Top"]
+scale = Vector2(5, 0.625)
+texture = ExtResource("2_block")
 
-[node name="Block_4" type="StaticBody2D" parent="Obstacles"]
-position = Vector2(220, -140)
-script = ExtResource("2_lquwl")
+[node name="Ground_End_Top" type="StaticBody2D" parent="."]
+position = Vector2(1060, 290)
 
-[node name="Collision" type="CollisionShape2D" parent="Obstacles/Block_4"]
-shape = SubResource("RectangleShape2D_0xm2m")
+[node name="Collision" type="CollisionShape2D" parent="Ground_End_Top"]
+shape = SubResource("shape_large")
 
-[node name="Sprite" type="Sprite2D" parent="Obstacles/Block_4"]
-scale = Vector2(3.0, 0.875)
-texture = ExtResource("2_0xm2m")
+[node name="Sprite" type="Sprite2D" parent="Ground_End_Top"]
+scale = Vector2(5, 0.625)
+texture = ExtResource("2_block")
 
-[node name="Block_5" type="StaticBody2D" parent="Obstacles"]
-position = Vector2(470, 110)
-script = ExtResource("2_lquwl")
+[node name="Ground_Start_Bottom" type="StaticBody2D" parent="."]
+position = Vector2(80, 614)
 
-[node name="Collision" type="CollisionShape2D" parent="Obstacles/Block_5"]
-shape = SubResource("RectangleShape2D_0xm2m")
+[node name="Collision" type="CollisionShape2D" parent="Ground_Start_Bottom"]
+shape = SubResource("shape_large")
 
-[node name="Sprite" type="Sprite2D" parent="Obstacles/Block_5"]
-scale = Vector2(3.0, 0.875)
-texture = ExtResource("2_0xm2m")
+[node name="Sprite" type="Sprite2D" parent="Ground_Start_Bottom"]
+scale = Vector2(5, 0.625)
+texture = ExtResource("2_block")
 
-[node name="Player_1" type="CharacterBody2D" parent="." unique_id=1901264873]
-position = Vector2(150, 580)
-script = ExtResource("4_7mycd")
-Move_Speed = 260.0
-Left_Key = 65
-Right_Key = 68
-Up_Key = 87
-Down_Key = 83
+[node name="Ground_End_Bottom" type="StaticBody2D" parent="."]
+position = Vector2(1060, 614)
 
-[node name="Collision" type="CollisionShape2D" parent="Player_1" unique_id=153922778]
-position = Vector2(-8, -4)
-shape = SubResource("CapsuleShape2D_1bvp3")
+[node name="Collision" type="CollisionShape2D" parent="Ground_End_Bottom"]
+shape = SubResource("shape_large")
 
-[node name="Sprite" type="Sprite2D" parent="Player_1" unique_id=830644189]
-position = Vector2(-7.249999, -4.4999914)
-scale = Vector2(1.390625, 1.46875)
-texture = ExtResource("3_h2yge")
+[node name="Sprite" type="Sprite2D" parent="Ground_End_Bottom"]
+scale = Vector2(5, 0.625)
+texture = ExtResource("2_block")
+
+[node name="Top_Platforms" type="Node2D" parent="."]
+
+[node name="Bottom_Platforms" type="Node2D" parent="."]
+
+[node name="Finish_Line_Top" type="Sprite2D" parent="."]
+position = Vector2(1100, 270)
+scale = Vector2(0.25, 1.5)
+modulate = Color(1, 0.85, 0, 1)
+texture = ExtResource("2_white")
+
+[node name="Checkpoint_Top" type="Node2D" parent="."]
+position = Vector2(980, 270)
+
+[node name="Pole" type="Sprite2D" parent="Checkpoint_Top"]
+position = Vector2(0, 0)
+scale = Vector2(0.125, 2.5)
+modulate = Color(0.8, 0.8, 0.8, 1)
+texture = ExtResource("2_white")
+
+[node name="Flag" type="Sprite2D" parent="Checkpoint_Top"]
+position = Vector2(8, -30)
+scale = Vector2(0.5, 0.625)
+modulate = Color(0, 1, 0.2, 1)
+texture = ExtResource("2_white")
+
+[node name="Finish_Line_Bottom" type="Sprite2D" parent="."]
+position = Vector2(1100, 594)
+scale = Vector2(0.25, 1.5)
+modulate = Color(1, 0.85, 0, 1)
+texture = ExtResource("2_white")
+
+[node name="Checkpoint_Bottom" type="Node2D" parent="."]
+position = Vector2(980, 594)
+
+[node name="Pole" type="Sprite2D" parent="Checkpoint_Bottom"]
+position = Vector2(0, 0)
+scale = Vector2(0.125, 2.5)
+modulate = Color(0.8, 0.8, 0.8, 1)
+texture = ExtResource("2_white")
+
+[node name="Flag" type="Sprite2D" parent="Checkpoint_Bottom"]
+position = Vector2(8, -30)
+scale = Vector2(0.5, 0.625)
+modulate = Color(0, 1, 0.2, 1)
+texture = ExtResource("2_white")
+
+[node name="Player_1" type="CharacterBody2D" parent="."]
+position = Vector2(80, 265)
+script = ExtResource("5_p1s")
+
+[node name="Collision" type="CollisionShape2D" parent="Player_1"]
+shape = SubResource("shape_player")
+
+[node name="Sprite" type="Sprite2D" parent="Player_1"]
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("3_p1")
 
 [node name="Player_2" type="CharacterBody2D" parent="."]
-position = Vector2(500, 580)
-script = ExtResource("4_7mycd")
-Move_Speed = 260.0
-Left_Key = 4194319
-Right_Key = 4194321
-Up_Key = 4194320
-Down_Key = 4194322
+position = Vector2(80, 589)
+script = ExtResource("6_p2s")
 
 [node name="Collision" type="CollisionShape2D" parent="Player_2"]
-position = Vector2(-8, -4)
-shape = SubResource("CapsuleShape2D_1bvp3")
+shape = SubResource("shape_player")
 
 [node name="Sprite" type="Sprite2D" parent="Player_2"]
-position = Vector2(-7.249999, -4.4999914)
-scale = Vector2(1.390625, 1.46875)
-modulate = Color(0.45, 0.8, 1, 1)
-texture = ExtResource("3_h2yge")
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("4_p2")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="P1_Label" type="Label" parent="UI"]
+offset_left = 10
+offset_top = 5
+offset_right = 200
+offset_bottom = 30
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+theme_override_font_sizes/font_size = 16
+text = "P1: Level 1"
+
+[node name="P2_Label" type="Label" parent="UI"]
+offset_left = 10
+offset_top = 330
+offset_right = 200
+offset_bottom = 355
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+theme_override_font_sizes/font_size = 16
+text = "P2: Level 1"
+
